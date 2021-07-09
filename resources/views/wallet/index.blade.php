@@ -8,6 +8,9 @@
     <link href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Responsive datatable examples -->
     <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet') }}" type="text/css" />
+
+    <!---Sweet-Alert css-->
+    <link href="{{ asset('assets/plugins/sweet-alert/sweetalert.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -24,7 +27,7 @@
                     </ol>
 
                     <div class="text-right">
-                        <a class="btn btn-primary btn-lg waves-effect waves-ligh" href="/"><i class="mdi mdi-plus"></i> Add Wallet</a>
+                        <a class="btn btn-primary btn-lg waves-effect waves-ligh" href="{{ route('wallet.create') }}"><i class="mdi mdi-plus"></i> Add Wallet</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +54,8 @@
                                             <td class="text-center">
                                                 <a href="{{ route('wallet.show', $wallet['id']) }}" class="btn ripple btn-dark btn-sm"><i class="mdi mdi-eye"></i></a>
                                                 <a href="{{ route('wallet.edit', $wallet['id']) }}" class="btn ripple btn-info btn-sm"><i class="mdi mdi-square-edit-outline"></i></a>
-                                                <a href="{{ route('wallet.edit', $wallet['id']) }}" class="btn ripple btn-danger btn-sm"><i class="mdi mdi-delete-empty "></i></a>
+                                                <a href="javascript:void(0)" data-url="{{ route('wallet.destroy', $wallet['id']) }}" class="swal-delete btn ripple btn-danger btn-sm"><i class="mdi mdi-delete-empty "></i></a>
+                                                @csrf
                                             </td>
                                         </tr>
                                     @endforeach
@@ -84,4 +88,8 @@
 
     <!-- Datatable init js -->
     <script src="{{ asset('assets/pages/datatables.init.js') }}"></script>
+
+    <!-- Sweet-Alert js-->
+    <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/sweet-alert/jquery.sweet-alert.js') }}"></script>
 @endsection

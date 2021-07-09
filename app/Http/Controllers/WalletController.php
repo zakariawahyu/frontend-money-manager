@@ -41,7 +41,7 @@ class WalletController extends Controller
      */
     public function create()
     {
-        //
+        return view('wallet.create');
     }
 
     /**
@@ -52,7 +52,17 @@ class WalletController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $moneymanager = $this->moneymanager->createNew($this->endpoint, $request->all());
+
+        if ($moneymanager['status'] == 'error') {
+            return redirect()->route('wallet.create')->withInput($request->all());
+        }
+
+        return redirect()->route('wallet.index')->with('alert', [
+            'color' => 'success',
+            'icon' => 'check-circle',
+            'message' => 'Wallet successfully added!',
+        ]);
     }
 
     /**
@@ -63,7 +73,9 @@ class WalletController extends Controller
      */
     public function show($id)
     {
-        //
+        $wallet = $this->moneymanager->getByID($this->endpoint, $id);
+
+        return view('wallet.show', compact('wallet'));
     }
 
     /**
@@ -74,7 +86,9 @@ class WalletController extends Controller
      */
     public function edit($id)
     {
-        //
+        $wallet = $this->moneymanager->getByID($this->endpoint, $id);
+
+        return view('wallet.edit', compact('wallet'));
     }
 
     /**
@@ -86,7 +100,17 @@ class WalletController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $moneymanager = $this->moneymanager->updateByID($this->endpoint, $id, $request->all());
+
+        if ($moneymanager['status'] == 'error') {
+            return redirect()->route('wallet.edit', $id)->withInput($request->all());
+        }
+
+        return redirect()->route('wallet.index')->with('alert', [
+            'color' => 'success',
+            'icon' => 'check-circle',
+            'message' => 'Wallet successfully added!',
+        ]);
     }
 
     /**
@@ -97,6 +121,6 @@ class WalletController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->moneymanager->deleteByID($this->endpoint, $id);
     }
 }
