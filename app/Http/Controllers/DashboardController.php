@@ -31,7 +31,7 @@ class DashboardController extends Controller
     {
         $data = $this->moneymanager->getAll($this->endpoint);
 
-        return $data;
+        return view('index');
     }
 
     /**

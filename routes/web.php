@@ -13,4 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', ['as' => 'wallets.index', 'uses' => 'DashboardController@index']);
+Route::get('/', 'DashboardController@index');
+Route::resource('/wallet', 'WalletController');
+Route::resource('/category', 'CategoryController');
