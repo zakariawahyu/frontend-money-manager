@@ -30,8 +30,9 @@
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-note-multiple"></i><span> History Transaction <span class="float-right menu-arrow"><i class="mdi mdi-plus"></i></span> </span></a>
                     <ul class="submenu">
-                        <li><a href="#">Pemasukan</a></li>
-                        <li><a href="#">Pengeluaran</a></li>
+                        <li><a href="{{ route('transaction.index') }}">All Transaction</a></li>
+                        <li><a href="{{ route('transaction.income') }}">Income</a></li>
+                        <li><a href="{{ route('transaction.expense') }}">Expense</a></li>
                     </ul>
                 </li>
             </ul>

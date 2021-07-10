@@ -35,6 +35,18 @@ class WalletController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexTransaction($id)
+    {
+        $transactions = $this->moneymanager->getAll('transaction-detail', 'wallet='.$id);
+
+        return view('.wallet.transaction.index', compact('transactions'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

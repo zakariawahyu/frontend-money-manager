@@ -37,7 +37,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-1">Saldo</label>
                                 <div class="col-sm-11">
-                                    <label for="">{{ $wallet['data']['balance'] }}</label>
+                                    <label for="">Rp. {{ number_format($wallet['balance'], 0, ',', '.') }}</label>
                                 </div>
                             </div>
                         </div>

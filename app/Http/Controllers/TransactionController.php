@@ -29,7 +29,33 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = $this->moneymanager->getAll('transaction-detail');
+
+        return view('transaction.index', compact('transactions'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexIncome()
+    {
+        $transactions = $this->moneymanager->getAll('transaction-detail', 'transaction_type=1');
+
+        return view('transaction.income.index', compact('transactions'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexExpense()
+    {
+        $transactions = $this->moneymanager->getAll('transaction-detail', 'transaction_type=2');
+
+        return view('transaction.expense.index', compact('transactions'));
     }
 
     /**

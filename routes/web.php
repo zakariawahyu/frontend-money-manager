@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'DashboardController@index')->name('dashboard');
+Route::get('/wallet/{id}/transaction', 'WalletController@indexTransaction')->name('wallet.transaction');
 Route::resource('/wallet', 'WalletController');
 Route::resource('/category', 'CategoryController');
+Route::get('/transaction/income', 'TransactionController@indexIncome')->name('transaction.income');
+Route::get('/transaction/expense', 'TransactionController@indexExpense')->name('transaction.expense');
 Route::resource('/transaction', 'TransactionController');
+
+

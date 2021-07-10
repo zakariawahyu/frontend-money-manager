@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Wallet - Money Manager')
+@section('title', 'Income - Money Manager')
 
 @section('extend-css')
     <!-- DataTables -->
@@ -19,16 +19,12 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Wallet</h4>
+                    <h4 class="page-title">Income</h4>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0);">Money Manager</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Wallet</a></li>
-                        <li class="breadcrumb-item active">Index</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Transaction</a></li>
+                        <li class="breadcrumb-item active">Income</li>
                     </ol>
-
-                    <div class="text-right">
-                        <a class="btn btn-primary btn-lg waves-effect waves-ligh" href="{{ route('wallet.create') }}"><i class="mdi mdi-plus"></i> Add Wallet</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -41,21 +37,26 @@
                             <table id="datatable" class="table table-bordered table-hover dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
-                                    <th>Nama Wallet</th>
-                                    <th>Saldo</th>
+                                    <th>Tanggal</th>
+                                    <th>Kategori</th>
+                                    <th>Tipe Transaksi</th>
+                                    <th>Jumlah</th>
+                                    <th>Deskripsi</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($wallets['data'] as $wallet)
+                                    @foreach ($transactions['data'] as $transaction)
                                         <tr>
-                                            <td>{{ $wallet['name_wallet'] }}</td>
-                                            <td>Rp. {{ number_format($wallet['balance'], 0, ',', '.') }}</td>
+                                            <td>{{ $transaction['date'] }}</td>
+                                            <td>{{ $transaction['category']['name_category'] }}</td>
+                                            <td>{{ $transaction['category']['transactiontype']['name_transaction_type'] }}</td>
+                                            <td>Rp. {{ number_format($transaction['amount'], 0, ',', '.') }}</td>
+                                            <td>{{ $transaction['note'] }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('wallet.show', $wallet['id']) }}" class="btn ripple btn-dark btn-sm"><i class="mdi mdi-eye"></i></a>
-                                                <a href="{{ route('wallet.edit', $wallet['id']) }}" class="btn ripple btn-info btn-sm"><i class="mdi mdi-square-edit-outline"></i></a>
-                                                <a href="javascript:void(0)" data-url="{{ route('wallet.destroy', $wallet['id']) }}" class="swal-delete btn ripple btn-danger btn-sm"><i class="mdi mdi-delete-empty "></i></a>
-                                                <a href="{{ route('wallet.transaction', $wallet['id']) }}" class="btn ripple btn-light btn-sm"><i class="mdi mdi-credit-card"></i></a>
+                                                <a href="{{ route('transaction.show', $transaction['id']) }}" class="btn ripple btn-dark btn-sm"><i class="mdi mdi-eye"></i></a>
+                                                <a href="{{ route('transaction.edit', $transaction['id']) }}" class="btn ripple btn-info btn-sm"><i class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0)" data-url="{{ route('transaction.destroy', $transaction['id']) }}" class="swal-delete btn ripple btn-danger btn-sm"><i class="mdi mdi-delete-empty"></i></a>
                                                 @csrf
                                             </td>
                                         </tr>
