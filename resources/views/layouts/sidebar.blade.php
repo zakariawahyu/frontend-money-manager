@@ -22,15 +22,17 @@
                 </li>
 
                 <li>
-                    <a href="javascript:void(0);" class="waves-effect">
+                    <a href="{{ route('transaction.create') }}" class="waves-effect">
                         <i class="mdi mdi-square-inc-cash"></i><span> Transaction </span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="javascript:void(0);" class="waves-effect">
-                        <i class="mdi mdi-note-multiple"></i><span> History Transaction </span>
-                    </a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-note-multiple"></i><span> History Transaction <span class="float-right menu-arrow"><i class="mdi mdi-plus"></i></span> </span></a>
+                    <ul class="submenu">
+                        <li><a href="#">Pemasukan</a></li>
+                        <li><a href="#">Pengeluaran</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
